@@ -15,6 +15,10 @@
     // 	],
     // 	"description": "Log output to console"
     // }
+    "Shebang (Python)": {
+        "prefix": "#!python",
+        "body": "#!/usr/bin/env python"
+    },
     "To do": {
         "prefix": "todo",
         "body": "$LINE_COMMENT TODO (${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}): "
