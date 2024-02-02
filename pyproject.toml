@@ -1,43 +1,44 @@
 [tool.poetry]
-name = "temp"
-version = "0.1.0"
-description = "temp"
 authors = ["bkm <bk-m@example.com>"]
-readme = "README.md"
-license = "NOLICENSE"
-homepage = "https://example.com/"
-repository = "https://example.com/user/repo"
+description = "temp"
 documentation = "https://example.com/docs/"
+homepage = "https://example.com/"
 keywords = ["keyword1", "keyword2"]
+license = "NOLICENSE"
+name = "temp"
 packages = [{ include = "app" }]
+readme = "README.md"
+repository = "https://example.com/user/repo"
+version = "0.1.0"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 
 [tool.poetry.group.dev.dependencies]
-pytest = "^7.4.3"
-black = "^23.11.0"
-ruff = "^0.1.6"
-mypy = "^1.7.1"
+black = "^24.1.1"
 invoke = "^2.2.0"
+mypy = "^1.8.0"
+pytest = "^8.0.0"
+ruff = "^0.2.0"
 
 [tool.poetry.scripts]
 my-app = "app.main:main"
 
 [build-system]
-requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core"]
 
 [tool.black]
+check = true
+include = '\.pyi?$'
 line-length = 88
 target-version = ['py311']
-include = '\.pyi?$'
-check = true
 
 [tool.mypy]
 check_untyped_defs = true
 disallow_incomplete_defs = true
 disallow_untyped_defs = true
+exclude = ["tasks.py"]
 follow_imports = "skip"
 ignore_missing_imports = true
 no_implicit_optional = true
@@ -48,34 +49,33 @@ show_error_context = true
 strict_optional = true
 warn_redundant_casts = true
 warn_unused_ignores = true
-exclude = ["tasks.py"]
 
 [[tool.mypy.overrides]]
-module = "tests.*"
 disallow_untyped_defs = false
+module = "tests.*"
 
 [tool.pytest.ini_options]
-minversion = "6.0"
 addopts = "-ra -q"
+minversion = "6.0"
 testpaths = ["tests"]
 
 [tool.ruff]
-select = ["ALL"]
-ignore = ["D212", "D200"]
-respect-gitignore = true
 exclude = ["__init__.py"]
 line-length = 88
+lint.dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+lint.ignore = ["D212", "D200"]
+lint.select = ["ALL"]
+lint.task-tags = ["TODO", "FIXME"]
+respect-gitignore = true
 target-version = "py311"
-task-tags = ["TODO", "FIXME"]
-dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 
-[tool.ruff.flake8-quotes]
+[tool.ruff.lint.flake8-quotes]
 docstring-quotes = "double"
 inline-quotes = "double"
 multiline-quotes = "double"
 
-[tool.ruff.isort]
+[tool.ruff.lint.isort]
 known-first-party = ["app"]
 
-[tool.ruff.pydocstyle]
+[tool.ruff.lint.pydocstyle]
 convention = "google"
